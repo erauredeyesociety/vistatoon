@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VE and AFR Map Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>VE and AFR Map Generator</h1>
+    <div class="container">
+        <div class="section">
+            <h2>Define Map Domains and Intervals</h2>
+            <div class="input-row">
+                <div class="input-column">
+                    <label>RPM Start: <input type="number" id="rpmStart" value="500" min="0"></label>
+                    <label>RPM End: <input type="number" id="rpmEnd" value="8000" min="0"></label>
+                    <label>RPM Interval: <input type="number" id="rpmInterval" value="1000" min="1"></label>
+                </div>
+                <div class="input-column">
+                    <label>Oxygen Start: <input type="number" id="oxygenStart" value="-12" step="0.1"></label>
+                    <label>Oxygen End: <input type="number" id="oxygenEnd" value="40" step="0.1"></label>
+                    <label>Oxygen Interval: <input type="number" id="oxygenInterval" value="3" step="0.1" min="0.1"></label>
+                </div>
+            </div>
+            <button onclick="generateMaps()">Generate Map Grids</button>
+        </div>
+        <div class="section">
+            <h2>Edit Axis Values</h2>
+            <div>
+                <label>RPM Axis: <input type="text" id="rpmAxisValues"></label>
+            </div>
+            <div>
+                <label>Oxygen Axis: <input type="text" id="oxygenAxisValues"></label>
+            </div>
+            <button onclick="updateMapsFromInputs()">Update Axes</button>
+        </div>
+        <div class="section">
+            <h2>Set VE and AFR Map Ranges</h2>
+            <div class="input-row">
+                <div class="input-column">
+                    <label>Min VE Value: <input type="number" id="minVE" value="0.2" step="0.01"></label>
+                    <label>Max VE Value: <input type="number" id="maxVE" value="1.2" step="0.01"></label>
+                </div>
+                <div class="input-column">
+                    <label>Min AFR Value: <input type="number" id="minAFR" value="11.3" step="0.01"></label>
+                    <label>Max AFR Value: <input type="number" id="maxAFR" value="15.1" step="0.01"></label>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>VE Map Editor</h2>
+            <div id="veTableContainer"></div>
+            <button class="copy-btn" onclick="copyToClipboard('veMapOutput')">Copy VE Map to Clipboard</button>
+            <textarea id="veMapOutput" readonly></textarea>
+        </div>
+        <div class="section">
+            <h2>AFR Map Editor</h2>
+            <div id="afrTableContainer"></div>
+            <button class="copy-btn" onclick="copyToClipboard('afrMapOutput')">Copy AFR Map to Clipboard</button>
+            <textarea id="afrMapOutput" readonly></textarea>
+        </div>
+    </div>
+    <script src="generator.js"></script>
+</body>
+</html>
